@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/GeekBrains/Android_1/JavaCode/lesson2/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/GeekBrains/Android_1/JavaCode/lesson2/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
+        <entry key="..\:/GeekBrains/Android_1/JavaCode/lesson2/app/src/main/res/layout/activity_main.xml" value="0.15" />
       </map>
     </option>
   </component>
