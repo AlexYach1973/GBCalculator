@@ -19,6 +19,7 @@
     <string name="btn_plus">+</string>
     <string name="btn_minus">-</string>
     <string name="btn_equals">=</string>
+    <string name="btn_clear">clear</string>
 
 
 </resources>
