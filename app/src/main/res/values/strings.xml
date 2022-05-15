@@ -25,5 +25,8 @@
     <string name="light_style">Светлый стиль</string>
     <string name="dark_style">Темный стиль</string>
 
+<!--    Start Activity-->
+    <string name="start">START</string>
+
 
 </resources>

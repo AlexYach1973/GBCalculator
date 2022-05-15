@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Вернулись назад так, чтоб пересоздать MainActivity
         startActivity(new Intent(this, MainActivity.class));
 
-        Log.d("myLogs", "Save: " + theme);
     }
 
     // Чтение настроек, параметр «тема»
@@ -89,8 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
         //Прочитать тему, если настройка не найдена - взять по умолчанию
         String strTheme = sharedPref.getString(KEY_THEME, "light");
-
-        Log.d("myLogs", "Read: " + strTheme);
 
         if (strTheme.equals("light")) {
             return R.style.MyLightTheme;
@@ -360,7 +357,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         current1 = mathExp.getCurrent1();
         current2 = mathExp.getCurrent2();
         operation = mathExp.getOperation();
-
     }
-
 }

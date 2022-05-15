@@ -1,10 +1,6 @@
 package com.alexyach.geekbrain.android.calculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -26,6 +22,7 @@ public class StylesActivity extends MainActivity {
 
                 setCurrentTheme("light");
                 // пересоздадим активити, чтобы тема применилась
+                // в текущем активити
                 recreate();
             }
         });
@@ -36,6 +33,7 @@ public class StylesActivity extends MainActivity {
 
                 setCurrentTheme("dark");
                 // пересоздадим активити, чтобы тема применилась
+                // в текущем активити
                 recreate();
             }
         });
