@@ -9,8 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyLightTheme">
-<!--        android:theme="@style/MyDarkTheme">-->
-
+        <activity
+            android:name=".StylesActivity"
+            android:exported="false" />
+        <!-- android:theme="@style/MyDarkTheme"> -->
         <activity
             android:name=".MainActivity"
             android:exported="true">

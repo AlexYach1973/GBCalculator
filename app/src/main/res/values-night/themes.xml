@@ -13,4 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!--    my Theme-->
+    <style name="MyLightTheme" parent="Theme.Calculator">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/teal_200</item>
+    </style>
+
+    <style name="MyDarkTheme" parent="Theme.Calculator">
+        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorPrimary</item>
+    </style>
 </resources>

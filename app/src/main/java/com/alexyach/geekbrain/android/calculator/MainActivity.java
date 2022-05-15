@@ -4,13 +4,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    // Имя настроек
+    private static final String NameSharedPreference = "LOGIN";
+    private static final String KEY_THEME = "theme";
+
+//    LinearLayout rootLL;
 
     // Ключ для сохранения/чтения данных из Bundle
     private static final String KEY = "Key";
@@ -39,8 +51,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Boolean clearField = false;
 
     private TextView textStory, textDisplay;
-    private Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9,
-            btn_dot, btn_div, btn_plus, btn_minus, btn_mult, btn_equals, btn_clear;
+    private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9,
+            btnDot, btnDiv, btnPlus, btnMinus, btnMult, btnEquals, btnClear;
 
     // Массив кнопок с цифрами
     private Button[] arrayButtonNum;
@@ -49,10 +61,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Установить тему перед установкой макета
+        setTheme(getCurrentTheme());
+
         setContentView(R.layout.activity_main);
 
         initView();
     }
+
+    // Сохранение настроек
+    public void setCurrentTheme(String theme) {
+        SharedPreferences sharedPref =
+                getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(KEY_THEME, theme);
+        editor.apply();
+
+        // Вернулись назад так, чтоб пересоздать MainActivity
+        startActivity(new Intent(this, MainActivity.class));
+
+        Log.d("myLogs", "Save: " + theme);
+    }
+
+    // Чтение настроек, параметр «тема»
+    int getCurrentTheme() {
+        SharedPreferences sharedPref =
+                getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
+        //Прочитать тему, если настройка не найдена - взять по умолчанию
+        String strTheme = sharedPref.getString(KEY_THEME, "light");
+
+        Log.d("myLogs", "Read: " + strTheme);
+
+        if (strTheme.equals("light")) {
+            return R.style.MyLightTheme;
+        } else {
+            return R.style.MyDarkTheme;
+        }
+    }
+
 
 
     // Обработка нажатий
@@ -120,6 +166,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Очистка поля story
         if (view.getId() == R.id.text_view_story) {
             textStory.setText("");
+
+        }
+
+        // Переход на StylesActivity
+        if (view.getId() == R.id.text_view_display) {
+
+            startActivity(new Intent(this, StylesActivity.class));
         }
     }
 
@@ -174,19 +227,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         switch (operation) {
             case " / ":
-                textDisplay.setText(String.format("%.2f", (current1 / current2)));
+                textDisplay.setText(String.format(Locale.UK, "%.2f", (current1 / current2)));
                 break;
 
             case " * ":
-                textDisplay.setText(String.format("%.2f", (current1 * current2)));
+                textDisplay.setText(String.format(Locale.UK, "%.2f", (current1 * current2)));
                 break;
 
             case " + ":
-                textDisplay.setText(String.format("%.2f", (current1 + current2)));
+                textDisplay.setText(String.format(Locale.UK, "%.2f", (current1 + current2)));
                 break;
 
             case " - ":
-                textDisplay.setText(String.format("%.2f", (current1 - current2)));
+                textDisplay.setText(String.format(Locale.UK, "%.2f", (current1 - current2)));
 //                Log.d("myLogs", "минус: " + (current1 - current2));
                 break;
 
@@ -231,29 +284,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
+//        rootLL = findViewById(R.id.root_linear_layout);
+
         textStory = findViewById(R.id.text_view_story);
         textDisplay = findViewById(R.id.text_view_display);
 
-        btn_0 = findViewById(R.id.btn_0);
-        btn_1 = findViewById(R.id.btn_1);
-        btn_2 = findViewById(R.id.btn_2);
-        btn_3 = findViewById(R.id.btn_3);
-        btn_4 = findViewById(R.id.btn_4);
-        btn_5 = findViewById(R.id.btn_5);
-        btn_6 = findViewById(R.id.btn_6);
-        btn_7 = findViewById(R.id.btn_7);
-        btn_8 = findViewById(R.id.btn_8);
-        btn_9 = findViewById(R.id.btn_9);
-        btn_div = findViewById(R.id.btn_div);
-        btn_plus = findViewById(R.id.btn_plus);
-        btn_minus = findViewById(R.id.btn_minus);
-        btn_mult = findViewById(R.id.btn_mult);
-        btn_dot = findViewById(R.id.btn_dot);
-        btn_equals = findViewById(R.id.btn_equals);
-        btn_clear = findViewById(R.id.btn_clear);
+        btn0 = findViewById(R.id.btn_0);
+        btn1 = findViewById(R.id.btn_1);
+        btn2 = findViewById(R.id.btn_2);
+        btn3 = findViewById(R.id.btn_3);
+        btn4 = findViewById(R.id.btn_4);
+        btn5 = findViewById(R.id.btn_5);
+        btn6 = findViewById(R.id.btn_6);
+        btn7 = findViewById(R.id.btn_7);
+        btn8 = findViewById(R.id.btn_8);
+        btn9 = findViewById(R.id.btn_9);
+        btnDiv = findViewById(R.id.btn_div);
+        btnPlus = findViewById(R.id.btn_plus);
+        btnMinus = findViewById(R.id.btn_minus);
+        btnMult = findViewById(R.id.btn_mult);
+        btnDot = findViewById(R.id.btn_dot);
+        btnEquals = findViewById(R.id.btn_equals);
+        btnClear = findViewById(R.id.btn_clear);
 
-        arrayButtonNum = new Button[]{btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6,
-                btn_7, btn_8, btn_9, btn_dot};
+        arrayButtonNum = new Button[]{btn0, btn1, btn2, btn3, btn4, btn5, btn6,
+                btn7, btn8, btn9, btnDot};
 
         initListener();
     }
@@ -264,15 +319,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             arrayButtonNum[i].setOnClickListener(this);
         }
 
-        btn_div.setOnClickListener(this);
-        btn_plus.setOnClickListener(this);
-        btn_minus.setOnClickListener(this);
-        btn_mult.setOnClickListener(this);
+        btnDiv.setOnClickListener(this);
+        btnPlus.setOnClickListener(this);
+        btnMinus.setOnClickListener(this);
+        btnMult.setOnClickListener(this);
 
-        btn_equals.setOnClickListener(this);
-        btn_clear.setOnClickListener(this);
+        btnEquals.setOnClickListener(this);
+        btnClear.setOnClickListener(this);
 
         textStory.setOnClickListener(this);
+
+        textDisplay.setOnClickListener(this);
     }
 
     // Сохранение данных
@@ -305,4 +362,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         operation = mathExp.getOperation();
 
     }
+
 }
