@@ -11,4 +11,9 @@
     <color name="gray_A">#FFAAAAAA</color>
     <color name="gray_3">#FF333333</color>
 
+<!--    Color my Theme-->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
 </resources>
