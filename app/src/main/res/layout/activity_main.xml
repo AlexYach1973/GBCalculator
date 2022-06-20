@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/mathematics"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/root_linear_layout">
 
     <TextView
         android:id="@+id/text_view_story"
